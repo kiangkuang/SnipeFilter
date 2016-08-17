@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
 
-  <body>
-    <div id="result"></div>
+<body>
+    <div class="container">
+        <div id="result"></div>
+    </div>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script>
-      var filters = [
-          "venusaur", "charizard", "blastoise",
-          "beedrill", "raichu", "sandslash",
-          "nidoking", "nidoqueen", "clefable",
-          "ninetales", "golbat", "vileplume",
-          "golduck", "primeape", "arcanine",
-          "poliwrath", "alakazam", "machamp",
-          "golem", "rapidash", "slowbro",
-          "farfetchd", "muk", "cloyster",
-          "gengar", "exeggutor", "marowak",
-          "hitmonchan", "lickitung", "rhydon",
-          "chansey", "kangaskhan", "starmie",
-          "mr. mime", "scyther", "magmar",
-          "electabuzz", "jynx", "gyarados",
-          "lapras", "ditto", "vaporeon",
-          "jolteon", "flareon", "porygon",
-          "kabutops", "aerodactyl", "snorlax",
-          "articuno", "zapdos", "moltres",
-          "dragonite", "mewtwo", "mew"
-      ];
+        var filters = [
+            "venusaur", "charizard", "blastoise",
+            "beedrill", "raichu", "sandslash",
+            "nidoking", "nidoqueen", "clefable",
+            "ninetales", "golbat", "vileplume",
+            "golduck", "primeape", "arcanine",
+            "poliwrath", "alakazam", "machamp",
+            "golem", "rapidash", "slowbro",
+            "farfetchd", "muk", "cloyster",
+            "gengar", "exeggutor", "marowak",
+            "hitmonchan", "lickitung", "rhydon",
+            "chansey", "kangaskhan", "starmie",
+            "mr. mime", "scyther", "magmar",
+            "electabuzz", "jynx", "gyarados",
+            "lapras", "ditto", "vaporeon",
+            "jolteon", "flareon", "porygon",
+            "kabutops", "aerodactyl", "snorlax",
+            "articuno", "zapdos", "moltres",
+            "dragonite", "mewtwo", "mew"
+        ];
 
-      getJson();
-      var interval = setInterval(getJson, 1000);
+        getJson();
+        var interval = setInterval(getJson, 1000);
 
-      function getJson() {
-          $.getJSON("https://crossorigin.me/http://pokesnipers.com/api/v1/pokemon.json", function(json) {
-              $("#result").empty();
-              json.results.forEach(parse);
-          });
-      }
+        function getJson() {
+            $.getJSON("https://crossorigin.me/http://pokesnipers.com/api/v1/pokemon.json", function(json) {
+                $("#result").empty();
+                json.results.forEach(parse);
+                if ($("#result h5").length == 0) {
+                    $("#result").append("<p>No Rare Pokemon in SG right now!</p>");
+                }
+            });
+        }
 
-      function parse(pokemon, index) {
-          var coords = pokemon.coords.split(",");
-          var until = new Date(pokemon.until);
-          if (coords[0] > 1.274269 &&
-              coords[0] < 1.459611 &&
-              coords[1] > 103.643668 &&
-              coords[1] < 104.012396 &&
-              $.inArray(pokemon.name.toLowerCase(), filters) !== -1) {
-              $("#result").append(
-                  "<p>" +
-                  "<img src='" + pokemon.icon + "'>" +
-                  pokemon.name +
-                  " at <a href='https://maps.google.com/?q=" + pokemon.coords + "' target='_blank'>" + pokemon.coords + "</a>" +
-                  " (" +
-                  ~~((until - new Date()) / 60000) + " mins " +
-                  ~~(((until - new Date()) % 60000) / 1000) + " s until despawn)" +
-                  "</p>"
-              );
-          }
-      }
+        function parse(pokemon, index) {
+            var coords = pokemon.coords.split(",");
+            var until = new Date(pokemon.until);
+            if (coords[0] > 1.274269 &&
+                coords[0] < 1.459611 &&
+                coords[1] > 103.643668 &&
+                coords[1] < 104.012396 &&
+                $.inArray(pokemon.name.toLowerCase(), filters) !== -1) {
+                $("#result").append(
+                    "<h5>" +
+                    "<img src='" + pokemon.icon + "'>" +
+                    pokemon.name +
+                    " at <a href='https://maps.google.com/?q=" + pokemon.coords + "' target='_blank'>" + pokemon.coords + "</a>" +
+                    " (" +
+                    ~~((until - new Date()) / 60000) + " mins " +
+                    ~~(((until - new Date()) % 60000) / 1000) + " s until despawn)" +
+                    "</h5>"
+                );
+            }
+        }
     </script>
-  </body>
+</body>
+
 </html>
