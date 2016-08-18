@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>PokeSnipersSg</title>
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -12,7 +13,11 @@
 
 <body>
     <div class="container">
-        <div id="result"></div>
+        <ul class="collection">
+            <li class="collection-item avatar valign-wrapper">
+                <span class="title valign">Loading...</span>
+            </li>
+        </ul>
     </div>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -44,10 +49,14 @@
 
         function getJson() {
             $.getJSON("https://crossorigin.me/http://pokesnipers.com/api/v1/pokemon.json", function(json) {
-                $("#result").empty();
+                $(".collection").empty();
                 json.results.forEach(parse);
-                if ($("#result h5").length == 0) {
-                    $("#result").append("<h5>No Rare Pokemon in SG right now!</h5>");
+                if ($(".collection li").length == 0) {
+                    $(".collection").append(`
+                        <li class="collection-item avatar valign-wrapper">
+                            <span class="title valign">No rare Pokemon found!</span>
+                        </li>
+                    `);
                 }
             });
         }
@@ -60,16 +69,18 @@
                 coords[1] > 103.643668 &&
                 coords[1] < 104.012396 &&
                 $.inArray(pokemon.name.toLowerCase(), filters) !== -1) {
-                $("#result").append(
-                    "<h5>" +
-                    "<img src='" + pokemon.icon + "'>" +
-                    pokemon.name +
-                    " at <a href='https://maps.google.com/?q=" + pokemon.coords + "' target='_blank'>" + pokemon.coords + "</a>" +
-                    " (" +
-                    ~~((until - new Date()) / 60000) + " mins " +
-                    ~~(((until - new Date()) % 60000) / 1000) + " s until despawn)" +
-                    "</h5>"
-                );
+                $(".collection").append(`
+                    <li class="collection-item avatar">
+                        <img src="` + pokemon.icon + `" alt="` + pokemon.name + `" class="circle">
+                        <span class="title">` + pokemon.name + `</span>
+                        <p>
+                            <a href="https://maps.google.com/?q=` + pokemon.coords + `"" target="_blank">` + pokemon.coords + `</a>
+                            <br>` +
+                            ~~((until - new Date()) / 60000) + ` mins ` +
+                            ~~(((until - new Date()) % 60000) / 1000) + ` s
+                        </p>
+                    </li>
+                `);
             }
         }
     </script>
