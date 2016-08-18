@@ -197,7 +197,7 @@ function getJson() {
         if ($(".collection li").length == 0) {
             $(".collection").append(`
                 <li class="collection-item avatar valign-wrapper">
-                    <span class="title valign">No rare Pokemon found in SG!</span>
+                    <span class="title valign">No Pokemon found!</span>
                 </li>
             `);
         }
