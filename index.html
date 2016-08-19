@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>PokeSnipersSg</title>
+    <title>SnipeFilter</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -14,14 +14,12 @@
 <body>
     <div class="container">
         <div class="row">
-            <h3>PokeSnipersSg</h3>
-            <div class="col s4 m2">
-                <p>
-                    <a id="select-all" class="blue waves-effect waves-light btn">Select All</a>
-                </p>
-                <form id="filters"></form>
-            </div>
-            <div class="col s8 m10">
+            <h3>SnipeFilter</h3>
+            <div class="col s12">
+                <button class="modal-trigger waves-effect waves-light btn red darken-3" data-target="filterModal" style="width:100%;">Filter Results</button>
+                <div class="progress red lighten-4" style="height:2px; margin-bottom:0;">
+                    <div class="indeterminate red lighten-3"></div>
+                </div>
                 <ul class="collection">
                     <li class="collection-item avatar valign-wrapper">
                         <span class="title valign">Loading...</span>
@@ -30,10 +28,45 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="filterModal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h3>Filter Results</h3>
+            <div class="row">
+                <h5>Location</h5>
+                <div class="input-field col s6 m3">
+                    <input id="min_lat" type="number" class="validate" min="-180" max="180" step="0.000001" value="1.237826">
+                    <label class="active" for="min_lat">Minimum Latitude</label>
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="max_lat" type="number" class="validate" min="-180" max="180" step="0.000001" value="1.470877">
+                    <label class="active" for="max_lat">Maximum Latitude</label>
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="min_long" type="number" class="validate" min="-180" max="180" step="0.000001" value="103.634489">
+                    <label class="active" for="min_long">Minimum Longitude</label>
+                </div>
+                <div class="input-field col s6 m3">
+                    <input id="max_long" type="number" class="validate" min="-180" max="180" step="0.000001" value="104.006222">
+                    <label class="active" for="max_long">Maximum Longitude</label>
+                </div>
+            </div>
+            <div class="row">
+                <h5>Show only these Pokemon</h5>
+                <p>
+                    <button id="select-all" class="blue waves-effect waves-light btn">Deselect All</button>
+                </p>
+                <form id="filters"></form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-action modal-close waves-effect waves-light btn">Close</button>
+        </div>
+    </div>
+
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script src="script.js"></script>
 </body>
-
-</html>
