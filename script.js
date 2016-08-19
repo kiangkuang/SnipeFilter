@@ -222,7 +222,7 @@ function parse(pokemon) {
                 <img src="` + pokemon.icon + `" alt="` + pokemon.name + `" class="circle">
                 <span class="title">` + pokemon.name + `</span>
                 <p>
-                    <a href="https://maps.google.com/?q=` + pokemon.coords + `"" target="_blank">` + pokemon.coords + `</a>
+                    <a href="https://maps.google.com/?q=` + pokemon.coords + ` (` + pokemon.name + `)" target="_blank">` + pokemon.coords + `</a>
                     <br>` +
                     ~~((until - new Date()) / 60000) + ` mins ` +
                     ~~(((until - new Date()) % 60000) / 1000) + ` s
