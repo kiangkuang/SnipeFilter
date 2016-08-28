@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('.modal-trigger').leanModal();
 })
 
-var list = ["Aerodactyl", "Alakazam", "Arcanine", "Blastoise", "Chansey", "Charizard", "Dewgong", "Dragonair", "Dragonite", "Dugtrio", "Exeggutor", "Farfetch'd", "Flareon", "Gengar", "Grimer", "Gyarados", "Haunter", "Hitmonchan", "Hitmonlee", "Jolteon", "Kangaskhan", "Lapras", "Lickitung", "Magneton", "Marowak", "Mr. Mime", "Muk", "Nidoking", "Nidoqueen", "Ninetales", "Porygon", "Raichu", "Rapidash", "Slowbro", "Snorlax", "Vaporeon", "Venusaur", "Wigglytuff"];
+var list = ["Aerodactyl", "Alakazam", "Arcanine", "Beedrill", "Blastoise", "Butterfree", "Chansey", "Charizard", "Charmeleon", "Clefable", "Cloyster", "Dewgong", "Dodrio", "Dragonair", "Dragonite", "Dratini", "Dugtrio", "Electabuzz", "Exeggutor", "Farfetch'd", "Fearow", "Flareon", "Gengar", "Gloom", "Golduck", "Golem", "Grimer", "Gyarados", "Haunter", "Hitmonchan", "Hitmonlee", "Hypno", "Ivysaur", "Jolteon", "Kabuto", "Kabutops", "Kadabra", "Kangaskhan", "Kingler", "Lapras", "Lickitung", "Machamp", "Magmar", "Magneton", "Marowak", "Mr. Mime", "Muk", "Nidoking", "Nidoqueen", "Nidorina", "Nidorino", "Ninetales", "Omanyte", "Omastar", "Onix", "Parasect", "Pidgeot", "Pinsir", "Poliwhirl", "Poliwrath", "Porygon", "Primeape", "Raichu", "Rapidash", "Rhydon", "Scyther", "Seadra", "Seaking", "Slowbro", "Snorlax", "Starmie", "Tangela", "Tauros", "Tentacruel", "Vaporeon", "Venomoth", "Venusaur", "Victreebel", "Vileplume", "Wartortle", "Weepinbell", "Weezing", "Wigglytuff"];
 
 for (var col = 0; col < 3; col++) {
     for (var i = col * (list.length / 3); i < (col + 1) * (list.length / 3); i++) {
